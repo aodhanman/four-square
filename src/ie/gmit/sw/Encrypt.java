@@ -6,22 +6,17 @@ public class Encrypt {
 
     char[][] square1,square2,square3,square4 = new char[5][5];
     
-    public Encrypt() {
+
     
+    public  char[][] fillchar(char[][] filled) {
     int x = 0;
-    
-    for (int i = 0; i < 5;i++){
-        for (int j = 0; j < 5;j++){
-            
-               square1[i][j] =  letters[x];
-                
-               System.out.println(square1[i][j]);
-               
-               x++; 
-        }
-    }
-    square4 = square1.clone();
-    
-    
+    for(int i = 0; i < 5; i++){
+             for(int j = 0; j < 5; j++){
+                filled[i][j] = letters[x];
+                x++;
+                }   
+            }
+    //square4 = square1.clone();
+    return filled;
     }
 }
