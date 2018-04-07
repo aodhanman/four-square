@@ -4,7 +4,7 @@ public class Encrypt {
     
     char[] letters = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
-    char[][] square1,square2,square3,square4 = new char[5][5];
+    char[][] square1 = new char[5][5] ;
     
 
     
