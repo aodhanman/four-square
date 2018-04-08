@@ -1,13 +1,25 @@
 package ie.gmit.sw;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Reader {
     
-    Scanner scan = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
     
-    char i = scan.next().charAt(0);
+    String select = sc.next();
+    File file = new File("PoblachtNaHEireann.txt");
+    //File file = new File("PoblachtNaHEireann.txt");
+
+    public Reader() {
+    
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            System.out.println(line);
+        }
+        sc.close();
     
     
-    
+    }
 }
