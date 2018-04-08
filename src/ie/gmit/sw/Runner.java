@@ -62,6 +62,7 @@ public class Runner {
                 chars.add(ch);
                  
         }for(int j = 0; j < 4; j++){
+            
                         System.out.println(chars.get(j));
                         System.out.println("Bigram: " + Encrypt.bigram(Reader.content)[j]);
                     }  
