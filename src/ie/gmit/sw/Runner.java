@@ -1,10 +1,7 @@
 package ie.gmit.sw;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,55 +13,54 @@ import java.util.Scanner;
  */
 public class Runner {
     
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        Encrypt enc = new Encrypt();
+        // new encryption class
+        Reader read = new Reader();
+        
         
         Random r = new Random();
+        //random
+        //key string and arrays
         String key = "";
         char[] keyArray = {};
+        char[] letters2 = enc.lettersArray;
         char[] letters = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
         char[] keyChar = key.toCharArray();
+        
         List<Character> chars = new ArrayList<>() ;
         List<Character> keyList = new ArrayList<>() ;
-        
-        
-        
-            Encrypt enc = new Encrypt();
+       //method to fill polybius square    
+            enc.fillchar(enc.polySquare);
+            for(int j = 0; j < 5; j++){
+                    System.out.println(enc.polySquare[1][j]);
+                }   
             
-            enc.fillchar(enc.square1);
-            
-            System.out.println(enc.square1[2][2]);
-
-            
+       // C:\Users\aodhan\Documents\NetBeansProjects\four-square\src\ie\gmit\sw
+                
         System.out.println("Enter 1 to enter keyphrase");
         System.out.println("Enter 2 to generate random key");
-       
+       //prompt for user input
         Scanner sc = new Scanner(System.in);
         int in = sc.nextInt();
-        for (char ch: letters){
-            chars.add(ch);
-        }
-        
-        
-        
+       //if else for users key selection
         if (in == 1){
             System.out.println("please enter your key ");
-            sc.next(key);
+            key = sc.next();
             keyChar = key.toCharArray();
             
         }else if (in == 2){
             System.out.println("Your key will be generated");
-            for (char ch: letters){
+            for (char ch: letters2){
                 
-            chars.add(ch);
-        }
-                    
-       
+                chars.add(ch);
+                 
+        }for(int j = 0; j < 20; j++){
+                        System.out.println(chars.get(j));
+                    }  
        // System.out.println(enc.letters[2]);
       //  System.out.println(enc.square1[2][2]);
         System.out.println("Fail");
-        
-        
-
-        }}}
-    
-
+            }
+        }
+    }
