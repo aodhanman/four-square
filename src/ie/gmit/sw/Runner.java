@@ -17,17 +17,18 @@ public class Runner {
         Encrypt enc = new Encrypt();
         // new encryption class
         Reader read = new Reader();
-        
+        //creates string array to hold bigram 
         
         Random r = new Random();
         //random
         //key string and arrays
+        String message ="";
         String key = "";
         char[] keyArray = {};
         char[] letters2 = enc.lettersArray;
         char[] letters = {'a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
         char[] keyChar = key.toCharArray();
-        
+        StringBuilder keyString = new StringBuilder();
         List<Character> chars = new ArrayList<>() ;
         List<Character> keyList = new ArrayList<>() ;
        //method to fill polybius square    
@@ -45,9 +46,14 @@ public class Runner {
         int in = sc.nextInt();
        //if else for users key selection
         if (in == 1){
+            int x = 0;
             System.out.println("please enter your key ");
-            key = sc.next();
-            keyChar = key.toCharArray();
+            keyString.append(sc.next());
+            while(keyString.length() < 25){
+                System.out.println("please enter more");
+                keyString.append(sc.next());
+
+            }
             
         }else if (in == 2){
             System.out.println("Your key will be generated");
@@ -55,8 +61,9 @@ public class Runner {
                 
                 chars.add(ch);
                  
-        }for(int j = 0; j < 20; j++){
+        }for(int j = 0; j < 4; j++){
                         System.out.println(chars.get(j));
+                        System.out.println("Bigram: " + Encrypt.bigram(Reader.content)[j]);
                     }  
        // System.out.println(enc.letters[2]);
       //  System.out.println(enc.square1[2][2]);
