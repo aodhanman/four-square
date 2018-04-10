@@ -1,5 +1,6 @@
 package ie.gmit.sw;
 
+import static ie.gmit.sw.Reader.content;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,11 +35,12 @@ public class Runner {
         StringBuilder keyString2 = new StringBuilder();
 
         List<Character> chars = new ArrayList<>() ;
+        List<Character> chars2 = new ArrayList<>() ;
+
         List<Character> keyList = new ArrayList<>() ;
        //method to fill polybius squares using multi dim arrays    
             enc.fillchar(enc.polySquare1);
             enc.fillchar(enc.polySquare2);
-            
             
        // C:\Users\aodhan\Documents\NetBeansProjects\four-square\src\ie\gmit\sw
                 
@@ -48,60 +50,68 @@ public class Runner {
        //prompt for user input
         Scanner sc = new Scanner(System.in);
         int in = sc.nextInt();
-       //if else for users key selection
-        if (in == 1){
-            int x = 0;
-            HashSet<Character> used = new HashSet<Character>();
-            System.out.println("please enter your first key ");
-            keyString.append(sc.next());
-            while(keyString.length() < 25){
-                
-                //adds to hashset to ensure no duplicates
-                used.add(keyString.charAt(x));
-                System.out.println("please enter more");
+        //if else for users key selection
+        switch (in) {
+            case 1:
+                int x = 0;
+                HashSet<Character> used = new HashSet<Character>();
+                System.out.println("please enter your first key ");
                 keyString.append(sc.next());
-
-            }System.out.println("first key: " + keyString.toString());
-            System.out.println("please enter your second key ");
-            keyString2.append(sc.next());
-            while(keyString2.length() < 25){
-                System.out.println("please enter more");
+                // while keystring is less than 25
+                while(keyString.length() < 25){
+                    
+                    for(int i = 0; i < 25; i++){
+                        //adds to hashset to ensure no duplicates
+                        used.add(keyString.charAt(x));
+                        System.out.println("please enter more");
+                        if(!used.contains(keyString.charAt(x))){
+                            keyString.append(sc.next());
+                        }
+                    }
+                    
+                }   System.out.println("first key: " + keyString.toString());
+                System.out.println("please enter your second key ");
                 keyString2.append(sc.next());
-            }System.out.println("second key: " + keyString2.toString());
-            
-            //not working, ran out of time
-             Encrypt.convertChar(Encrypt.polySquare1, keyString.toString());
-             Encrypt.convertChar(Encrypt.polySquare2, keyString2.toString());
-           
-           // enc.decrypt(answer, key);
-            for(int j = 0; j < 25; j++){
-                        System.out.println(chars.get(j));
-                       // System.out.println("Bigram: " + Encrypt.bigram(Reader.content)[j]);
-                    }  
-        }else if (in == 2){
-            System.out.println("Your key will be generated");
-            for (char ch: letters2){
+                while(keyString2.length() < 25){
+                    System.out.println("please enter more");
+                    keyString2.append(sc.next());
+                }   System.out.println("second key: " + keyString2.toString());
+                //not working, ran out of time
+                // Encrypt.convertChar(Encrypt.polySquare1, keyString.toString());
+                // Encrypt.convertChar(Encrypt.polySquare2, keyString2.toString());
+                enc.encrypt2(read.content, keyString.toString(), keyString2.toString());
+                break;
+            case 2:
+                System.out.println("Your key will be generated");
+                for (char ch: letters2){
+                    
+                    chars.add(ch);
+                    
+                }       for (char ch: letters2){
+                    
+                    chars2.add(ch);
+                    
+                }       Collections.shuffle(chars);
+                Collections.shuffle(chars2);
+                //fills polysquares with generated keys
+                Encrypt.convertChar(Encrypt.polySquare3, chars.toString());
+                Encrypt.convertChar(Encrypt.polySquare4, chars2.toString());
+                // passing polybius sqaure array and key char as a string
+                System.out.println("Encrypted text is: ");
+                //Encrypt.convertChar(Encrypt.polySquare1, chars.toString());
+                // enc.decrypt(answer, key);
+                // o(n) time
+                System.out.println(enc.encrypt2(read.content, chars.toString(), chars2.toString()));
                 
-                chars.add(ch);
-                 
-        }
-            Collections.shuffle(chars);
-            chars.toArray();
-            // passing polybius sqaure array and key char as a string
-            System.out.println("Encrypted text is: ");
-            
-            
-            Encrypt.convertChar(Encrypt.polySquare1, chars.toString());
-           // enc.decrypt(answer, key);
-            for(int j = 0; j < 25; j++){
-                        System.out.println(chars.get(j));
-                       // System.out.println("Bigram: " + Encrypt.bigram(Reader.content)[j]);
-                    }  
-
-        }else if (in == 3){
+                System.out.println(enc.decrypt2(Encrypt.encrypted, chars.toString(), chars2.toString()));
+                
+                break;
+            case 3:
                 System.out.println("Goodbye");
                 System.exit(0);
-            }
+            default:
+                break;
+        }
         
         }   
     }
