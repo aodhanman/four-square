@@ -59,8 +59,11 @@ public class Runner {
                 keyString.append(sc.next());
                 // while keystring is less than 25
                 while(keyString.length() < 25){
-                    
-                    for(int i = 0; i < 25; i++){
+                    while(keyString.length() < 25){
+                    System.out.println("please enter more");
+                    keyString.append(sc.next());
+                }  
+                   /* for(int i = 0; i < 25; i++){
                         //adds to hashset to ensure no duplicates
                         used.add(keyString.charAt(x));
                         System.out.println("please enter more");
@@ -68,18 +71,30 @@ public class Runner {
                             keyString.append(sc.next());
                         }
                     }
-                    
+                   */ 
                 }   System.out.println("first key: " + keyString.toString());
                 System.out.println("please enter your second key ");
                 keyString2.append(sc.next());
                 while(keyString2.length() < 25){
                     System.out.println("please enter more");
                     keyString2.append(sc.next());
-                }   System.out.println("second key: " + keyString2.toString());
+                }  
+                
+                System.out.println("second key: " + keyString2.toString());
                 //not working, ran out of time
                 // Encrypt.convertChar(Encrypt.polySquare1, keyString.toString());
                 // Encrypt.convertChar(Encrypt.polySquare2, keyString2.toString());
-                enc.encrypt2(read.content, keyString.toString(), keyString2.toString());
+
+                System.out.println("Encrpted text:");
+                System.out.println(enc.encrypt2(read.content, keyString.toString(), keyString2.toString()));
+                
+                System.out.println("");
+
+                System.out.println("Decrpted text:");
+
+                System.out.println(enc.decrypt2(Encrypt.encrypted, keyString.toString(), keyString2.toString()));
+                
+                
                 break;
             case 2:
                 System.out.println("Your key will be generated");
@@ -101,8 +116,13 @@ public class Runner {
                 //Encrypt.convertChar(Encrypt.polySquare1, chars.toString());
                 // enc.decrypt(answer, key);
                 // o(n) time
+                
                 System.out.println(enc.encrypt2(read.content, chars.toString(), chars2.toString()));
                 
+                System.out.println("");
+
+                System.out.println("Decrpted text:");
+
                 System.out.println(enc.decrypt2(Encrypt.encrypted, chars.toString(), chars2.toString()));
                 
                 break;
