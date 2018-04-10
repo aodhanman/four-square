@@ -109,8 +109,8 @@ public class Runner {
                 }       Collections.shuffle(chars);
                 Collections.shuffle(chars2);
                 //fills polysquares with generated keys
-                Encrypt.convertChar(Encrypt.polySquare3, chars.toString());
-                Encrypt.convertChar(Encrypt.polySquare4, chars2.toString());
+                enc.convertChar(enc.polySquare3, chars.toString());
+                enc.convertChar(enc.polySquare4, chars2.toString());
                 // passing polybius sqaure array and key char as a string
                 System.out.println("Encrypted text is: ");
                 //Encrypt.convertChar(Encrypt.polySquare1, chars.toString());
@@ -123,7 +123,7 @@ public class Runner {
 
                 System.out.println("Decrpted text:");
 
-                System.out.println(enc.decrypt2(Encrypt.encrypted, chars.toString(), chars2.toString()));
+                System.out.println(enc.decrypt2(enc.encrypted, chars.toString(), chars2.toString()));
                 
                 break;
             case 3:
