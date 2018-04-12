@@ -92,7 +92,7 @@ public class Runner {
 
                 System.out.println("Decrpted text:");
 
-                System.out.println(enc.decrypt2(Encrypt.encrypted, keyString.toString(), keyString2.toString()));
+                System.out.println(enc.decrypt2(enc.encrypted, keyString.toString(), keyString2.toString()));
                 
                 
                 break;
